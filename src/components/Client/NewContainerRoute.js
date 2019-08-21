@@ -73,7 +73,6 @@ function NewContainerRoute({errors, isSubmitting, ...props}) {
       </div>
     )
   }
-  console.log(props)
 
   return (
     <div>

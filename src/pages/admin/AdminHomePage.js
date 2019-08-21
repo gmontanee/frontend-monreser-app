@@ -16,6 +16,7 @@ class AdminHomePage extends Component {
           return(
             <div key={elem._id}>
               {elem.capacity}
+              <a href={`/accept/${elem._id}`}><button>Accept Request</button></a>
             </div>
           )
         })}
