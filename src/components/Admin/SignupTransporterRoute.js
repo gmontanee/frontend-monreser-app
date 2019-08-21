@@ -1,8 +1,8 @@
 import React from 'react';
 import {Route, Redirect} from 'react-router-dom';
-import withAuth from './withAuth';
+import withAuth from '../withAuth';
 
-const AnonRoute = (props) => {
+const SignupTransporterRoute = (props) => {
   console.log(props)
   const {isLoggedIn, component: Component, ...rest} = props;
   return (
@@ -12,9 +12,11 @@ const AnonRoute = (props) => {
           return <Component {...props}/>
         }}
         {...rest}
-      /> : <Redirect to='/' />}
+      /> : <Redirect to='/login' />}
     </>
+
+   
   );
 }
 
-export default withAuth(AnonRoute);
+export default withAuth(SignupTransporterRoute);

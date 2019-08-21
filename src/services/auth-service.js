@@ -9,11 +9,23 @@ class AuthService {
   }
 
   signup(user) {
-    const { username, password } = user;
-    return this.auth.post('/auth/signup', {username, password})
+    const {email, password, username, direction, country, region, town, postalCode} = user;
+    return this.auth.post('/auth/signup', {email, password, username, direction, country, region, town, postalCode})
+    .then(({ data }) => data);
+  }
+
+  signupAdmin(user) {
+    const {email, password, username} = user;
+    return this.auth.post('/auth/signup192837', {email, password, username})
       .then(({ data }) => data);
   }
 
+  signupTransporter(user) {
+    const {email, password, username, direction, country, region, town, postalCode} = user;
+    return this.auth.post('/auth/signuptransporter192837', {email, password, username, direction, country, region, town, postalCode})
+    .then(({ data }) => data);
+  }
+  
   login(user) {
     const { username, password } = user;
     return this.auth.post('/auth/login', {username, password})
