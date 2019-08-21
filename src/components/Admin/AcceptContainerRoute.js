@@ -1,10 +1,11 @@
 import React from 'react';
 import {Route, Redirect} from 'react-router-dom';
-import withAuth from './withAuth';
+import withAuth from '../withAuth';
 
-const PrivateRoute = (props) => {
+const AcceptContainerRoute = (props) => {
   const {isLoggedIn, component: Component, ...rest} = props;
-  console.log(props);
+  console.log('asdfghjk')
+  console.log(props)
   return (
     <>
       {isLoggedIn ?  <Route 
@@ -19,4 +20,4 @@ const PrivateRoute = (props) => {
   );
 }
 
-export default withAuth(PrivateRoute);
+export default withAuth(AcceptContainerRoute);

@@ -13,11 +13,18 @@ class ContainerService {
       .then(({ data }) => data);
   }
 
-  // login(user) {
-  //   const { username, password } = user;
-  //   return this.auth.post('/auth/login', {username, password})
-  //     .then(({ data }) => data);
-  // }
+  acceptContainer(container, transportist) {
+    const { name } = transportist;
+    const { _id } = container;
+    return this.clientRoutes.post('/clientRoutes/acceptContainer', { _id, name })
+      .then(({ data }) => data);
+  }
+
+  deleteContainer(containerId) {
+    console.log(containerId);
+    return this.clientRoutes.post('/clientRoutes/deleteContainer', { containerId })
+      .then(({ data }) => data);
+  }
 
   // logout() {
   //   return this.auth.post('/auth/logout')

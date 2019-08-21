@@ -7,6 +7,7 @@ import * as Yup from 'yup';
 
 
 function NewContainerRoute({errors, isSubmitting, ...props}) {
+  console.log(props)
   const EmptyOrFullSelect = ({ field, form: { touched, errors }, ...props }) => {
     return (
       <div>
@@ -115,6 +116,10 @@ function NewContainerRoute({errors, isSubmitting, ...props}) {
   )
 }
 
+// const redirectToHome = () => {
+//   console.log(this.props)
+// }
+
 export default withFormik({
   mapPropsToValues({service, filled, waste, capacity, ubicacio, dataEntrega, dataRetirada}) {
     return ({
@@ -162,7 +167,8 @@ export default withFormik({
       } else {
         console.log('todo ok');
         containerService.addContainer(values);
-        // resetForm();
+        resetForm();
+        // redirectToHome();
       }
       setSubmitting(false);
     },2000)
