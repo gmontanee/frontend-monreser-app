@@ -5,9 +5,11 @@ import AdminHomeRoute from '../../components/Admin/AdminHomeRoute';
 import withAuth from '../../components/withAuth.js';
 
 class HomePage extends Component {
+
   componentDidMount(){
     this.props.user.isAdmin && this.props.history.push("/adminHome")
   }
+  
   render() {
     const {isLoggedIn, user} = this.props;
     return (
