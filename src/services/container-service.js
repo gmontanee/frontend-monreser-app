@@ -39,6 +39,17 @@ class ContainerService {
     return this.clientRoutes.post('/clientRoutes/updateContainerToDelivered', { name, _id })
       .then(({ data }) => data);
   }
+  requestCollection(containerId) {
+    console.log( containerId);
+    return this.clientRoutes.post('/clientRoutes/requestCollection', { containerId })
+      .then(({ data }) => data);
+  }
+  
+  updateContainerToCollected(containerId) {
+    console.log( containerId);
+    return this.clientRoutes.post('/clientRoutes/updateContainerToCollected', { containerId })
+      .then(({ data }) => data);
+  }
 
   // logout() {
   //   return this.auth.post('/auth/logout')

@@ -20,8 +20,10 @@ class AdminHomePage extends Component {
               <p><strong>Ubicacio:</strong> {elem.ubicacio}</p>
               <p><strong>Data d'entrega:</strong> {elem.dataEntrega}</p>
               {elem.dataRetirada && <p><strong>Data de recollida:</strong> {elem.dataRetirada}</p>}
-              <a href={`/transporter/delivered/${elem._id}`}><button>Update Container</button></a>
-            </div>
+              { !elem.isDelivered ? <a href={`/transporter/delivered/${elem._id}`}><button>Update to Delivered</button></a> 
+                : <a href={`/transporter/delivered/${elem._id}`}><button>Update to Collected</button></a>
+              }
+            </div> 
           )
         })}
       </div>

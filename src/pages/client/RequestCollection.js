@@ -12,7 +12,7 @@ class AdminHomePage extends Component {
     });
     console.log('container', container);
     const trans1 = (containerId) => {
-      ContainerService.deleteContainer(containerId);
+      ContainerService.requestCollection(containerId);
       this.props.history.push("/");
     }
     return (
@@ -26,13 +26,13 @@ class AdminHomePage extends Component {
           <p><strong>Ubicacio:</strong> {container.ubicacio}</p>
           <p><strong>Data d'entrega:</strong> {container.dataEntrega}</p>
           {container.dataRetirada && <p><strong>Data de recollida:</strong> {container.dataRetirada}</p>}
-          { container.isDelivered ? <a href={`client/container/requestcollection/${container._id}`}><button>Request Collection</button></a> 
+          { container.isDelivered ? <button onClick={() => trans1(container._id)}>Request Collection</button>
             : <div>
                 <a href={`/client/container/edit/${container._id}`}><button>Edita</button></a>
                 <button onClick={() => trans1(container._id)}>Eliminar</button>
               </div> 
           }
-        </div>
+        </div> 
       </div>
     )
   }

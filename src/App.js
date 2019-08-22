@@ -63,7 +63,7 @@ class App extends Component {
 
               <PrivateAdminRoute path='/adminHome' exact component={AdminHomePage} />
               <PrivateAdminRoute path='/admin/accept/:id' exact component={AcceptContainerPage} />
-              <PrivateAdminRoute path="/admin/signuptransporter192837" exact component={SignupTransporter} />
+              <Route path="/admin/signuptransporter192837" exact component={SignupTransporter} />
               
               <PrivateTransporterRoute path="/transporterHome" exact component={TransporterHomePage} />
               <PrivateTransporterRoute path="/transporter/delivered/:id" exact component={UpdateContainer} />

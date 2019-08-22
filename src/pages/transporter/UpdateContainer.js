@@ -12,7 +12,11 @@ class AdminHomePage extends Component {
     console.log('container', container);
     const trans1 = (a, b) => {
       ContainerService.updateContainerToDelivered(a, b);
-      // this.props.history.push("/transporterHome");
+      this.props.history.push("/transporterHome");
+    }
+    const trans2 = (a) => {
+      ContainerService.updateContainerToCollected(a);
+      this.props.history.push("/transporterHome");
     }
     return (
       <div>
@@ -25,8 +29,10 @@ class AdminHomePage extends Component {
           <p><strong>Ubicacio:</strong> {container.ubicacio}</p>
           <p><strong>Data d'entrega:</strong> {container.dataEntrega}</p>
           {container.dataRetirada && <p><strong>Data de recollida:</strong> {container.dataRetirada}</p>}
-          <button onClick={() => trans1(container, {name: 'transporter1'})}>Delivered</button>
-        </div> 
+          { !container.isDelivered ? <button onClick={() => trans1(container, {name: 'transporter1'})}>Delivered</button>
+            : <button onClick={() => trans2(container._id)}>Collected</button>
+          }
+        </div>  
       </div>
     )
   }
