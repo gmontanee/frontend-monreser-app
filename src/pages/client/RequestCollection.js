@@ -17,7 +17,7 @@ class AdminHomePage extends Component {
     }
     return (
       <div>
-        <h1>Welcome ezsrxdtcfvgbh234567</h1>
+        <h1>Request Collection</h1>
         <div key={container._id}>
           <p><strong>Servei:</strong> {container.service}</p>
           {container.filled && <p><strong>Material:</strong> {container.filled}</p>}

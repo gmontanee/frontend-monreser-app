@@ -6,7 +6,6 @@ const ClientPrivateRoute = (props) => {
   const {isLoggedIn, component: Component, ...rest} = props;
   return (
     <>
-      <h1>qwertyui</h1>
       {!isLoggedIn ?  <Redirect to='/login' /> 
         : props.user.isAdmin ? <Redirect to='/adminHome' />
         : props.user.isTransporter ? <Redirect to='/transporterHome' />

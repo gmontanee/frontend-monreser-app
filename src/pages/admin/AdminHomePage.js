@@ -8,7 +8,7 @@ class AdminHomePage extends Component {
     console.log(user);
     return (
       <div>
-        <h1>Welcome ertyui {this.props.user.username}</h1>
+        <h1>Welcome {this.props.user.username}</h1>
         {user.activeContainers.map((elem) => {
           return(
             <div key={elem._id}>

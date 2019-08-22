@@ -48,7 +48,7 @@ class App extends Component {
       <Router>
         <AuthProvider>
           <div className="container">
-            <h1>Basic React Authentication</h1>
+            <h1>Monreser - App</h1>
             <Navbar />
             <Switch>
               <AnonRoute path="/login" exact component={Login} />
