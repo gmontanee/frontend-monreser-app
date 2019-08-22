@@ -26,6 +26,12 @@ class ContainerService {
       .then(({ data }) => data);
   }
 
+  modifyContainer(features, containerId) {
+    console.log(features, containerId);
+    return this.clientRoutes.post('/clientRoutes/modifyContainer', { features, containerId })
+      .then(({ data }) => data);
+  }
+
   // logout() {
   //   return this.auth.post('/auth/logout')
   //     .then(response => response.data)

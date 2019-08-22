@@ -1,39 +1,175 @@
-import React, { Component } from 'react'
-
+import React from 'react';
 import withAuth from '../../components/withAuth';
-import ContainerService from '../../services/container-service'
+import containerService from '../../services/container-service'
+import {withFormik, Form, Field} from 'formik';
+import * as Yup from 'yup';
 
-class AdminHomePage extends Component {
 
-  componentDidMount(){
-    this.props.user.isAdmin && this.props.history.push("/")
-  }
-  render() {
-    const { user } = this.props;
-    const container = user.activeContainers.find((elem) => {
-      return elem._id === this.props.match.params.id;
-    });
-    console.log('container', container);
-    const trans1 = (a, b) => {
-      ContainerService.acceptContainer(a, b);
-      this.props.history.push("/");
-    }
+
+function NewContainerRoute({errors, isSubmitting, ...props}) {
+
+  const EmptyOrFullSelect = ({ field, form: { touched, errors }, ...props }) => {
     return (
       <div>
-        <h1>Editar</h1>
-        <div key={container._id}>
-          {/* <p><strong>Servei:</strong> {container.service}</p>
-          {container.filled && <p><strong>Material:</strong> {container.filled}</p>}
-          <p><strong>Residu:</strong> {container.waste}</p>
-          <p><strong>Capacitat:</strong> {container.capacity}</p>
-          <p><strong>Ubicacio:</strong> {container.ubicacio}</p>
-          <p><strong>Data d'entrega:</strong> {container.dataEntrega}</p>
-          {container.dataRetirada && <p><strong>Data de recollida:</strong> {container.dataRetirada}</p>} */}
-          <button onClick={() => trans1(container, {name: 'transporter1'})}>Editar</button>
-        </div>
+        <select {...field} {...props}>
+          <option defaultChecked defaultValue="">
+            Select
+          </option>
+          <option value="recollida">Contenidor per a residus</option>
+          <option value="recollidaMesMaterial">Contenidor per a residus i entrega de material</option>
+        </select>
+        {touched[field.name] && errors[field.name] && <div className="error">{errors[field.name]}</div>}
       </div>
     )
   }
+  const MaterialFilled = ({ field, form: { touched, errors }, ...props }) => {
+    return (
+      <div>
+        <select {...field} {...props}>
+          <option defaultChecked defaultValue="">
+            Select
+          </option>
+          <option value="arena">Arena</option>
+          <option value="grava">Grava</option>
+          <option value="matxaca">Matxaca</option>
+          <option value="tot-u">Tot-u</option>
+          <option value="subproducte">Subproducte</option>
+          <option value="ullDePerdiu">Ull de Perdiu</option>
+        </select>
+        {touched[field.name] && errors[field.name] && <div className="error">{errors[field.name]}</div>}
+      </div>
+    )
+  }
+  const TypeOfWest = ({ field, form: { touched, errors }, ...props }) => {
+    return (
+      <div>
+        <select {...field} {...props}>
+          <option defaultChecked defaultValue="">
+            Select
+          </option>
+          <option value="runa">Runa</option>
+          <option value="banals">Banals</option>
+          <option value="fusta">Fusta</option>
+          <option value="paper-cartro">Paper i/o cartró</option>
+          <option value="plastic">Plàstic</option>
+          <option value="residusVegetals">Residus Vegetals</option>
+        </select>
+        {touched[field.name] && errors[field.name] && <div className="error">{errors[field.name]}</div>}
+      </div>
+    )
+  }
+  const Capacity = ({ field, form: { touched, errors }, ...props }) => {
+    return (
+      <div>
+        <select {...field} {...props}>
+          <option defaultChecked defaultValue="">
+            Select
+          </option>
+          <option value="5">5</option>
+          <option value="7">7</option>
+          <option value="9">9</option>
+          <option value="12">12</option>
+        </select>
+        {touched[field.name] && errors[field.name] && <div className="error">{errors[field.name]}</div>}
+      </div>
+    )
+  }
+  return (
+    <div>
+      <h1>New Container Page</h1>
+        <Form>
+          <label htmlFor="">Servei sol·licitat</label>
+          <Field name='service' component={EmptyOrFullSelect}/>
+          {errors.service && <p>{errors.service}</p>}
+
+          { props.values.service === 'recollidaMesMaterial' && 
+          <>
+            <label htmlFor="">Material a servir</label>
+            <Field name='filled' component={MaterialFilled} />
+          </>
+          }
+
+          <label htmlFor="">Residu</label>
+          <Field name='waste' component={TypeOfWest} />
+          {errors.empty && <p>{errors.empty}</p>}
+
+          <label htmlFor="">Capacitat</label>
+          <Field name='capacity' component={Capacity} />
+          {errors.ubicacio && <p>{errors.ubicacio}</p>}
+          
+          <label htmlFor="">Ubicacio</label>
+          <Field type='text' name='ubicacio' placeholder='Write your place' />
+          {errors.ubicacio && <p>{errors.ubicacio}</p>}
+          
+          <label htmlFor="">Data d'entrega</label>
+          <Field type='date' name='dataEntrega' />
+          {errors.dataEntrega && <p>{errors.dataEntrega}</p>}
+
+          <label htmlFor="">Data de recollida(opcional)</label>
+          <Field type='date' name='dataRetirada' />
+          {errors.dataRetirada && <p>{errors.dataRetirada}</p>}
+          
+          <button disabled={isSubmitting && true} type='submit'> submit </button>
+        </Form>
+    </div>
+  )
 }
 
-export default withAuth(AdminHomePage); 
+export default withAuth(withFormik({
+  mapPropsToValues({...props}) {
+    const container = props.user.activeContainers.find((elem) => {
+      return elem._id === props.match.params.id;
+    });
+    const {service, filled, waste, capacity, ubicacio, dataEntrega, dataRetirada} = container;
+    return ({
+      service: service || '',
+      filled: filled || '',
+      waste: waste || '',
+      capacity: capacity || '',
+      ubicacio: ubicacio || '',
+      dataEntrega: dataEntrega || '',
+      dataRetirada: dataRetirada || '',
+    })
+  },
+  validationSchema: Yup.object().shape({
+    service: Yup.string()
+      .required(),
+      waste: Yup.string()
+      .required(),
+    ubicacio: Yup.string()
+      .required(),
+    dataEntrega: Yup.string().required(),
+    dataRetirada: Yup.string().required(),
+    capacity: Yup.string().required(),
+    filled: Yup.string()
+      .when('service', {
+        is: 'recollidaMesMaterial',
+        then: Yup.string().required()
+      })
+  }),
+  handleSubmit(values, {setSubmitting, setErrors, resetForm, props})  {
+    setTimeout(()=>{
+      if(values.service === 'Select') {
+        setErrors({
+          service: 'seleciona una opcion'
+        })
+      } 
+      else if(values.service === 'recollidaMesMaterial' && values.filled === '') {
+        setErrors({
+          filled: 'rellena este campo'
+        })
+      }
+      else if(values.filled === 'Select') {
+        setErrors({
+          service: 'seleciona una opcion'
+        })
+      } else {
+        console.log('todo ok');
+        containerService.modifyContainer(values, props.match.params.id);
+        resetForm();
+        // redirectToHome();
+      }
+      setSubmitting(false);
+    },2000)
+  }
+})(NewContainerRoute));
