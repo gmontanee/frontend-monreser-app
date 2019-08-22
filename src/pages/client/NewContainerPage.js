@@ -1,5 +1,5 @@
 import React from 'react';
-import withAuth from '../withAuth.js';
+import withAuth from '../../components/withAuth';
 import containerService from '../../services/container-service'
 import {withFormik, Form, Field} from 'formik';
 import * as Yup from 'yup';

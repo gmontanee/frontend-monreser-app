@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom';
-import AdminHomeRoute from '../../components/Admin/AdminHomeRoute';
 
 import withAuth from '../../components/withAuth.js';
 
@@ -26,8 +25,7 @@ class HomePage extends Component {
           <a href="/newContainer"><button>Demana un nou contenidor</button></a>
         </section>
         <section>
-          {user.isAdmin ? <AdminHomeRoute path='/adminHome' exact component={AdminHomeRoute} /> :
-          user.activeContainers.map((elem) => {
+          {user.activeContainers.map((elem) => {
             return (
               <div key={elem._id}>
                 <p><strong>Servei:</strong> {elem.service}</p>
@@ -37,7 +35,9 @@ class HomePage extends Component {
                 <p><strong>Ubicacio:</strong> {elem.ubicacio}</p>
                 <p><strong>Data d'entrega:</strong> {elem.dataEntrega}</p>
                 {elem.dataRetirada && <p><strong>Data de recollida:</strong> {elem.dataRetirada}</p>}
-                <a href={`client/container/${elem._id}`}><button>Details</button></a>
+                { elem.isDelivered ? <a href={`client/container/requestcollection/${elem._id}`}><button>Request Collection</button></a> 
+                : <a href={`client/container/${elem._id}`}><button>Details</button></a>
+                }
               </div>
             )
           })}

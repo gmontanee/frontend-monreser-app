@@ -8,16 +8,14 @@ class FootNavbar extends Component {
       <div>
         {this.props.isLoggedIn ? (
           <>
-            <a href="/">Home<img src="/public/casa.png" alt="" width='100'/></a>
-            <a href="/private">Profile<img src="/public/usuario.png" alt=""/></a>
-          </>
+          <Link to='/'>Home</Link>
+          <Link to='/profile'>Profile</Link>
+        </>
         ) : (
           <>
-            <Link to='/login'>Login</Link>
-            <Link to='/signup'>Signup</Link>
+            <h3>For more information, please contact <strong>info@monreser.com</strong></h3>
           </>
         )}
-
       </div>
     )
   }

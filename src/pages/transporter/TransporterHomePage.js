@@ -3,12 +3,13 @@ import React, { Component } from 'react'
 import withAuth from '../../components/withAuth';
 
 class AdminHomePage extends Component {
+  
   render() {
     const { user } = this.props;
     console.log(user);
     return (
       <div>
-        <h1>Welcome ertyui {this.props.user.username}</h1>
+        <h1>Welcomeertyuio ertyui {this.props.user.username}</h1>
         {user.activeContainers.map((elem) => {
           return(
             <div key={elem._id}>
@@ -19,7 +20,7 @@ class AdminHomePage extends Component {
               <p><strong>Ubicacio:</strong> {elem.ubicacio}</p>
               <p><strong>Data d'entrega:</strong> {elem.dataEntrega}</p>
               {elem.dataRetirada && <p><strong>Data de recollida:</strong> {elem.dataRetirada}</p>}
-              <a href={`/admin/accept/${elem._id}`}><button>Accept Request</button></a>
+              <a href={`/transporter/delivered/${elem._id}`}><button>Update Container</button></a>
             </div>
           )
         })}
@@ -28,4 +29,4 @@ class AdminHomePage extends Component {
   }
 }
 
-export default withAuth(AdminHomePage); 
+export default withAuth(AdminHomePage);

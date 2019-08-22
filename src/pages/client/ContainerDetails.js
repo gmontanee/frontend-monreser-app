@@ -4,10 +4,7 @@ import withAuth from '../../components/withAuth';
 import ContainerService from '../../services/container-service'
 
 class AdminHomePage extends Component {
-
-  componentDidMount(){
-    this.props.user.isAdmin && this.props.history.push("/")
-  }
+  
   render() {
     const { user } = this.props;
     const container = user.activeContainers.find((elem) => {

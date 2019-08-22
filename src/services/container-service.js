@@ -25,10 +25,18 @@ class ContainerService {
     return this.clientRoutes.post('/clientRoutes/deleteContainer', { containerId })
       .then(({ data }) => data);
   }
-
+  
   modifyContainer(features, containerId) {
     console.log(features, containerId);
     return this.clientRoutes.post('/clientRoutes/modifyContainer', { features, containerId })
+    .then(({ data }) => data);
+  }
+  
+  updateContainerToDelivered(container, transportist) {
+    const { name } = transportist;
+    const { _id } = container;
+    console.log(name, _id);
+    return this.clientRoutes.post('/clientRoutes/updateContainerToDelivered', { name, _id })
       .then(({ data }) => data);
   }
 

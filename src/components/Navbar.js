@@ -17,7 +17,6 @@ class Navbar extends Component {
             <Link to='/signup'>Signup</Link>
           </>
         )}
-
       </div>
     )
   }
