@@ -5,7 +5,6 @@ import withAuth from '../../components/withAuth';
 class AdminHomePage extends Component {
   render() {
     const { user } = this.props;
-    console.log(user);
     return (
       <div>
         <h1>Welcome {this.props.user.username}</h1>

@@ -9,7 +9,6 @@ class AdminHomePage extends Component {
     const container = user.activeContainers.find((elem) => {
       return elem._id === this.props.match.params.id;
     });
-    console.log('container', container);
     const trans1 = (a, b) => {
       ContainerService.acceptContainer(a, b);
       this.props.history.push("/adminHome");

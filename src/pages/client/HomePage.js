@@ -8,7 +8,6 @@ class HomePage extends Component {
   componentDidMount(){
     this.props.getMe()
     .then(() => {
-      console.log(this.props.user);
       // this.props.user.populate("activeContainers");
     })
     this.props.user.isAdmin && this.props.history.push("/adminHome")

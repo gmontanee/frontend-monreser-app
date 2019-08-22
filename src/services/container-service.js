@@ -21,13 +21,11 @@ class ContainerService {
   }
 
   deleteContainer(containerId) {
-    console.log(containerId);
     return this.clientRoutes.post('/clientRoutes/deleteContainer', { containerId })
       .then(({ data }) => data);
   }
   
   modifyContainer(features, containerId) {
-    console.log(features, containerId);
     return this.clientRoutes.post('/clientRoutes/modifyContainer', { features, containerId })
     .then(({ data }) => data);
   }
@@ -35,18 +33,15 @@ class ContainerService {
   updateContainerToDelivered(container, transportist) {
     const { name } = transportist;
     const { _id } = container;
-    console.log(name, _id);
     return this.clientRoutes.post('/clientRoutes/updateContainerToDelivered', { name, _id })
       .then(({ data }) => data);
   }
   requestCollection(containerId) {
-    console.log( containerId);
     return this.clientRoutes.post('/clientRoutes/requestCollection', { containerId })
       .then(({ data }) => data);
   }
   
   updateContainerToCollected(containerId) {
-    console.log( containerId);
     return this.clientRoutes.post('/clientRoutes/updateContainerToCollected', { containerId })
       .then(({ data }) => data);
   }

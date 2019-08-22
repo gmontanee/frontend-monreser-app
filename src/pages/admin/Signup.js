@@ -65,13 +65,11 @@ export default withFormik({
   }),
   handleSubmit(values, {setSubmitting, setErrors, resetForm,props})  {
     setTimeout(()=>{
-      console.log(values, props)
       if(values.email === '1@1.com') {
         setErrors({
           email: 'email already taken'
         })
       } else {
-        console.log('todo ok')
         props.doSignUp(values)
         resetForm()
       }

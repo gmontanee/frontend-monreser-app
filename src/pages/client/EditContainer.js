@@ -164,7 +164,6 @@ export default withAuth(withFormik({
           service: 'seleciona una opcion'
         })
       } else {
-        console.log('todo ok');
         containerService.modifyContainer(values, props.match.params.id);
         resetForm();
         // redirectToHome();

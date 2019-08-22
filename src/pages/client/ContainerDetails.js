@@ -10,7 +10,6 @@ class AdminHomePage extends Component {
     const container = user.activeContainers.find((elem) => {
       return elem._id === this.props.match.params.id;
     });
-    console.log('container', container);
     const trans1 = (containerId) => {
       ContainerService.deleteContainer(containerId);
       this.props.history.push("/");

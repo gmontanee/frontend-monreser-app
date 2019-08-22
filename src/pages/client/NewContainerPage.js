@@ -7,7 +7,6 @@ import * as Yup from 'yup';
 
 
 function NewContainerRoute({errors, isSubmitting, ...props}) {
-  console.log(props)
   const EmptyOrFullSelect = ({ field, form: { touched, errors }, ...props }) => {
     return (
       <div>
@@ -165,7 +164,6 @@ export default withFormik({
           service: 'seleciona una opcion'
         })
       } else {
-        console.log('todo ok');
         containerService.addContainer(values);
         resetForm();
         // redirectToHome();
