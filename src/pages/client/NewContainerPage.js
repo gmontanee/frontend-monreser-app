@@ -166,7 +166,7 @@ export default withFormik({
       } else {
         containerService.addContainer(values);
         resetForm();
-        // redirectToHome();
+        props.history.push("/transporterHome");
       }
       setSubmitting(false);
     },2000)

@@ -31,3 +31,17 @@
     transform: rotate(360deg);
   }
 }
+
+.container {
+  padding: 20px 20px 0px 20px;
+}
+
+.footNavbarUl {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0px;
+}
+
+.footNavbarUl li {
+  text-decoration: none;
+}

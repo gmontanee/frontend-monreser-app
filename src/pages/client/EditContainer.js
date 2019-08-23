@@ -166,7 +166,6 @@ export default withAuth(withFormik({
       } else {
         containerService.modifyContainer(values, props.match.params.id);
         resetForm();
-        // redirectToHome();
       }
       setSubmitting(false);
     },2000)

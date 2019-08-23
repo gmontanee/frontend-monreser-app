@@ -5,12 +5,12 @@ import withAuth from './withAuth.js';
 class FootNavbar extends Component {
   render() {  
     return (
-      <div>
+      <div className="footNavbar">
         {this.props.isLoggedIn ? (
-          <>
-          <Link to='/'>Home</Link>
-          <Link to='/profile'>Profile</Link>
-        </>
+          <ul className='footNavbarUl'>
+          <li><Link to='/'>Home</Link></li>
+          <li><Link to='/profile'>Profile</Link></li>
+        </ul>
         ) : (
           <>
             <h3>For more information, please contact <strong>info@monreser.com</strong></h3>

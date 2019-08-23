@@ -3,8 +3,8 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 import AuthProvider from './contexts/auth-context.js';
 
-import './App.css'; 
 import 'milligram';
+import './App.css'; 
 
 //Components
 import Navbar from './components/Navbar.js';

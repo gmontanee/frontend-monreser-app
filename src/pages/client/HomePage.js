@@ -1,30 +1,35 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom';
-
 import withAuth from '../../components/withAuth.js';
 
 class HomePage extends Component {
 
+  state = {
+    activeContainers: []
+  }
+
   componentDidMount(){
     this.props.getMe()
     .then(() => {
-      // this.props.user.populate("activeContainers");
+      console.log(this.props.user)
+      if (this.props.isLoggedIn) {
+        this.setState({ activeContainers: this.props.user.activeContainers })
+      } 
     })
-    this.props.user.isAdmin && this.props.history.push("/adminHome")
   }
 
   render() {
-    const {isLoggedIn, user} = this.props;
+    // const { user } = this.props;
+
+    const { activeContainers } = this.state;
+
     return (
       <div>
-    { isLoggedIn ? (
-      <>
         <section>
           <h1>Home</h1>
           <a href="/newContainer"><button>Demana un nou contenidor</button></a>
         </section>
         <section>
-          {user.activeContainers.map((elem) => {
+          {activeContainers.map((elem) => {
             return (
               <div key={elem._id}>
                 <p><strong>Servei:</strong> {elem.service}</p>
@@ -41,8 +46,6 @@ class HomePage extends Component {
             )
           })}
         </section>
-      </>
-    ): (<Redirect to='/login' />)}
     </div>
     )
   }

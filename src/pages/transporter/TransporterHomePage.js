@@ -1,15 +1,31 @@
 import React, { Component } from 'react'
-
 import withAuth from '../../components/withAuth';
 
 class AdminHomePage extends Component {
+
+  state = {
+    activeContainers: []
+  }
+
+  componentDidMount(){
+    this.props.getMe()
+    .then(() => {
+      console.log(this.props.user)
+      if (this.props.isLoggedIn) {
+        this.setState({ activeContainers: this.props.user.activeContainers })
+      } 
+    })
+  }
   
   render() {
     const { user } = this.props;
+
+    const { activeContainers } = this.state;
+
     return (
       <div>
         <h1>Welcome {user.username}</h1>
-        {user.activeContainers.map((elem) => {
+        {activeContainers.map((elem) => {
           return(
             <div key={elem._id}>
               <p><strong>Servei:</strong> {elem.service}</p>
