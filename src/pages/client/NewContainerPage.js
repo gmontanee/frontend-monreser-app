@@ -115,10 +115,6 @@ function NewContainerRoute({errors, isSubmitting, ...props}) {
   )
 }
 
-// const redirectToHome = () => {
-//   console.log(this.props)
-// }
-
 export default withFormik({
   mapPropsToValues({service, filled, waste, capacity, ubicacio, dataEntrega, dataRetirada}) {
     return ({

@@ -10,7 +10,6 @@ class AdminHomePage extends Component {
   componentDidMount(){
     this.props.getMe()
     .then(() => {
-      console.log(this.props.user)
       if (this.props.isLoggedIn) {
         this.setState({ activeContainers: this.props.user.activeContainers })
       } 
