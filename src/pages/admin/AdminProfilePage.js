@@ -22,7 +22,8 @@ class AdminHomePage extends Component {
     // const { activeContainers } = this.state;
     return (
       <div>
-        <h1>Welcome to your Profile {this.props.user.username}</h1>
+        <h1>{this.props.user.username} Profile</h1>
+        <h3>Admin</h3>
         {/* {activeContainers.map((elem) => {
           return(
             <div key={elem._id}>

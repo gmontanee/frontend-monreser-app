@@ -20,7 +20,7 @@ class AdminHomePage extends Component {
     const { archivedContainers } = this.state;
     return (
       <div>
-        <h1>Welcome to your Client profile {this.props.user.username}</h1>
+        <h1>{this.props.user.username} Profile</h1>
         {archivedContainers.map((elem) => {
           return(
             <div key={elem._id}>
