@@ -4,7 +4,7 @@ import withAuth from '../../components/withAuth.js';
 class HomePage extends Component {
 
   state = {
-    activeContainers: []
+    activeContainers: [],
   }
 
   componentDidMount(){
@@ -28,7 +28,7 @@ class HomePage extends Component {
         <section>
           {activeContainers.map((elem) => {
             return (
-              <div key={elem._id}>
+              <div key={elem._id} className='containerDiv'>
                 <p><strong>Servei:</strong> {elem.service}</p>
                 {elem.filled && <p><strong>Material:</strong> {elem.filled}</p>}
                 <p><strong>Residu:</strong> {elem.waste}</p>

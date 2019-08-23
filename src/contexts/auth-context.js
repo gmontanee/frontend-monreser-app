@@ -12,12 +12,12 @@ class AuthProvider extends Component {
 
   userSignUp = (user) => {
     return authService.signup(user)
-    .then((user) => {
-      this.setState({
-        isLoggedIn: true,
-        user
-      })
-    })
+    // .then((user) => {
+    //   this.setState({
+    //     isLoggedIn: true,
+    //     user
+    //   })
+    // })
   }
 
   userLogin = (user) => {
